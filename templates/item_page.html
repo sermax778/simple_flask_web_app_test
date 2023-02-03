@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/item_page.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="context">
+        <img src="{{ url_for('static', filename=image_url) }}" width="440px" height="330px">
+
+        <div class="des">
+
+            <h2>{{title}}</h2>
+            {% if stock == 1 %}
+                <h2>{{price}}$</h2>
+                <p>{{description}}</p>
+                <p>In stock</p>
+            {% else %}
+                <h2 style="text-decoration: line-through;">{{price}}$</h2>
+                <p>{{description}}</p>
+                <p>Out of stock</p>
+            {% endif %}
+        </div>
+
+    </div>
+
+
+</div>
+{% endblock %}

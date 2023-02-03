@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/contact_us_flash.css') }}">
+{% endblock %}
+
+{% block body %}
+{% for cat, msg in get_flashed_messages(True)%}
+<div class="container">
+    <div class="flash {{ cat }}">{{ msg }}</div>
+</div>
+{% endfor %}
+
+<div class="container">
+   <h1>Login</h1>
+   <form action="" method="post">
+       {{ form.hidden_tag() }}
+
+       {% for field in form if field.name not in ['remember', 'submit', 'csrf_token'] %}
+       <p>{{field.label()}}<br>
+       {% if field.errors %}
+           {{ field(class='') }}
+           <span>
+           {% for i in field.errors %}
+           {{ i }}
+           {% endfor %}
+           </span>
+       {% else %}
+           {{ field() }}
+       {% endif %}
+       {%endfor%}
+
+
+<!--       <p>{{ form.login.label }} <br>-->
+<!--       {% if form.login.errors %}-->
+<!--           {{ form.login(class='') }}-->
+<!--           <span>-->
+<!--           {% for i in form.login.errors %}-->
+<!--           {{ i }}-->
+<!--           {% endfor %}-->
+<!--           </span>-->
+<!--       {% else %}-->
+<!--           {{ form.login() }}-->
+<!--       {% endif %}-->
+<!--       <p>{{ form.psw.label }} <br>-->
+
+<!--       {% if form.psw.errors %}-->
+<!--        {{ form.psw(class='') }}-->
+<!--           <span>-->
+<!--           {% for i in form.psw.errors %}-->
+<!--           {{ i }}-->
+<!--           {% endfor %}-->
+<!--           </span>-->
+<!--       {% else %}-->
+<!--            {{ form.psw() }}-->
+<!--       {% endif %}-->
+
+       <p>{{ form.remember.label }}{{ form.remember() }} <br>
+       {{ form.submit() }}
+       <p></p>
+       <p><a href="{{ url_for('register') }}">Registration</a>
+    </form>
+</div>
+
+
+{% endblock %}

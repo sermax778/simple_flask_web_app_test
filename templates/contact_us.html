@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/contact_us_flash.css') }}">
+{% endblock %}
+
+{% block body %}
+{% for cat, msg in get_flashed_messages(True)%}
+<div class="container">
+    <div class="flash {{ cat }}">{{ msg }}</div>
+</div>
+
+{% endfor %}
+<div class="container">
+   <form action="/contact-us" method="post">
+       <p><label>Name:</label>
+       <p><input type="text" name="username" required>
+       <p><label>Email:</label>
+       <p><input type="email" name="useremail" required>
+       <p><label>Message:</label>
+       <p><textarea name="message" cols="70" rows="5" required></textarea>
+       <p><input type="submit" value="Send">
+    </form>
+</div>
+
+
+{% endblock %}

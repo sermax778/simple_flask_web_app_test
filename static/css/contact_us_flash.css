@@ -1,0 +1,18 @@
+.flash {
+padding: 10px;
+}
+.flash.success {
+background: #5cbd4b;
+border: 1px solid #295c20;
+}
+.flash.error {
+background: #e82e2e;
+border: 1px solid #5c0303;
+}
+warning-field {
+background: #ff0000;
+}
+
+warning-msg {
+color: #f00;
+}

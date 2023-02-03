@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/contact_us_flash.css') }}">
+{% endblock %}
+
+{% block body %}
+{% for cat, msg in get_flashed_messages(True)%}
+<div class="container">
+    <div class="flash {{ cat }}">{{ msg }}</div>
+</div>
+
+{% endfor %}
+<div class="container">
+   <form action="{{ url_for('add_item') }}" method="post" enctype="multipart/form-data">
+       <p><label>Title:</label>
+       <p><input type="text" name="title" placeholder="Title" required>
+       <p><label>Price:</label>
+       <p><input type="text" name="price" placeholder="ex. 9.99" required>
+       <p><label>Description:</label>
+       <p><textarea name="description" id="" cols="30" rows="4" placeholder="Description" required></textarea>
+       <p><label>Image (.png, .jpg, .jpeg only):</label>
+       <p><input type=file name=image>
+       <p><input type="submit" value="Submit">
+    </form>
+</div>
+
+
+{% endblock %}
